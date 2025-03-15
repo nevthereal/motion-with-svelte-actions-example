@@ -19,7 +19,7 @@ export const rotateScaleIn: Action = (
 export const hover: Action = (node: HTMLElement) => {
 	$effect(() => {
 		hoverMotion(node, (element) => {
-			animate(element, { scale: 1.3 }, { type: 'spring', duration: 1 });
+			animate(element, { scale: 1.3 }, { type: 'spring', duration: 0.3 });
 
 			return () => animate(element, { scale: 1 }, { type: 'spring' });
 		});
