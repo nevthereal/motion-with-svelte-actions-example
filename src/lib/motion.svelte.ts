@@ -16,7 +16,13 @@ export const motion: Action<HTMLElement, MotionParams> = (
 	data: MotionParams = { keyframes: { scale: [0, 1] } }
 ) => {
 	$effect(() => {
-		animate(node, data.keyframes, data.options);
+		const animation = animate(node, data.keyframes, data.options);
+
+		animation.play();
+
+		return () => {
+			animation.stop();
+		};
 	});
 };
 
