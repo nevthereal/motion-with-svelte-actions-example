@@ -1,18 +1,22 @@
-import { animate, hover as hoverMotion } from 'motion';
+import {
+	animate,
+	hover as hoverMotion,
+	type AnimationOptions,
+	type DOMKeyframesDefinition
+} from 'motion';
 import type { Action } from 'svelte/action';
 
-// place files you want to import through the `$lib` alias in this folder.
-export const rotateScaleIn: Action = (
-	node: HTMLElement,
-	data: { rotate: number | number[]; scale: number | number[] } = {
-		rotate: [-180, 0],
-		scale: [0.7, 1]
-	}
-) => {
-	const { rotate, scale } = data;
+type MotionParams = {
+	keyframes: DOMKeyframesDefinition;
+	options?: AnimationOptions;
+};
 
+export const motion: Action<HTMLElement, MotionParams> = (
+	node: HTMLElement,
+	data: MotionParams = { keyframes: { scale: [0, 1] } }
+) => {
 	$effect(() => {
-		animate(node, { rotate, scale });
+		animate(node, data.keyframes, data.options);
 	});
 };
 
