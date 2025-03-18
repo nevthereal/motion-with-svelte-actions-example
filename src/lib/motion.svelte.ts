@@ -21,7 +21,7 @@ export const motion: Action<HTMLElement, MotionParams> = (
 		animation.play();
 
 		return () => {
-			animation.stop();
+			animation.cancel();
 		};
 	});
 };
